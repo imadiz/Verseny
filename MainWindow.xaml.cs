@@ -1,4 +1,5 @@
-﻿using System;
+﻿//try-catch
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,9 +21,11 @@ namespace Verseny
     /// </summary>
     public partial class MainWindow : Window
     {
+        public ViewModel VM;
         public MainWindow()
         {
             InitializeComponent();
+            VM = this.DataContext as ViewModel;
         }
 
         private void TabControl_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -39,6 +42,11 @@ namespace Verseny
                     this.Height = 450;
                     break;
             }
+        }
+
+        private void txt_bettingpoints_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
         }
     }
 }

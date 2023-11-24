@@ -1,4 +1,6 @@
-﻿<Window x:Class="Verseny.MainWindow"
+﻿
+    <!--try-catch-->
+    <Window x:Class="Verseny.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -127,7 +129,54 @@
             </Grid>
         </TabItem>
         <TabItem x:Name="Create_Bet" Header="Fogadás leadása">
-            
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="4*"/>
+                    <ColumnDefinition Width="4*"/>
+                    <ColumnDefinition Width="2*"/>
+                </Grid.ColumnDefinitions>
+                <StackPanel Orientation="Vertical"
+                            Grid.Column="0">
+                    <Label Content="Játékok"/>
+                    <ListView Name="lv_AllGames"
+                              ItemsSource="{Binding Model.AllGames}"
+                              HorizontalAlignment="Stretch">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <Label Content="{Binding Name}"/>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </StackPanel>
+                <StackPanel Orientation="Vertical"
+                            Grid.Column="1">
+                    <ListView Name="lv_Events"
+                              ItemsSource="{Binding ElementName=lv_AllGames, Path=SelectedItem.Events}"/>
+                </StackPanel>
+                <StackPanel Orientation="Vertical"
+                            Grid.Column="2">
+                    <TextBlock Margin="5 0 0 0">
+                        <Run Text="Pontok: "/>
+                        <Run Text="{Binding Model.Points}"/>
+                    </TextBlock>
+                    <TextBox x:Name="txt_bettingpoints"
+                             Text="{Binding Model.BettingPoints}"
+                             TextChanged="txt_bettingpoints_TextChanged">
+                        <TextBox.Style>
+                            <Style TargetType="TextBox">
+                                <Setter Property="IsEnabled" Value="True"/>
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding ElementName=lv_Events, Path=SelectedIndex}" Value="-1">
+                                        <DataTrigger.Setters>
+                                            <Setter Property="IsEnabled" Value="False"/>
+                                        </DataTrigger.Setters>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </TextBox.Style>
+                    </TextBox>
+                </StackPanel>
+            </Grid>
         </TabItem>
         <TabItem x:Name="Close_Game" Header="Játék lezárása">
             

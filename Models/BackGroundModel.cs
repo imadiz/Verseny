@@ -1,4 +1,5 @@
-﻿using System;
+﻿//try-catch
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -13,10 +14,13 @@ namespace Verseny.Models
         public ObservableCollection<OneGame> AllGames { get; set; } = new ObservableCollection<OneGame>();
         public ObservableCollection<string> PendingParticipants { get; set; } = new ObservableCollection<string>();
         public OneGame Pending { get; set; } = new OneGame();
+
+        public int BettingPoints { get; set; } = 0;
+        public int Points { get; set; } = 100;
         public void ReadGames()
         {
             FileStream fs = new FileStream("jatekok.txt", FileMode.Open, FileAccess.Read);
-            StreamReader sr = new StreamReader(fs);
+            StreamReader sr = new StreamReader(fs, Encoding.Default);
             OneGame temp;
             while (!sr.EndOfStream)
             {

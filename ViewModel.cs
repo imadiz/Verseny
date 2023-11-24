@@ -1,4 +1,5 @@
-﻿using CommunityToolkit.Mvvm.Input;
+﻿//try-catch
+using CommunityToolkit.Mvvm.Input;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -37,7 +38,7 @@ namespace Verseny
             {
                 _addBet = new RelayCommand<OneGame>((game) =>
                 {
-                    if (Model.Pending.Events.Count != 0 || Model.Pending.NameOfSubjects.Count == 0 || Model.Pending.Name == "" || Model.Pending.Organizer == "")
+                    if (Model.Pending.Events.Count == 0 || Model.Pending.NameOfSubjects.Count == 0 || Model.Pending.Name == "" || Model.Pending.Organizer == "")
                     {
                         MessageBox.Show("Töltsd ki mindegyik bemeneti adatot!", "Fogadó", MessageBoxButton.OK, MessageBoxImage.Error);
                     }
@@ -58,7 +59,7 @@ namespace Verseny
             {
                 _addparticipant = new RelayCommand<string>((name) =>
                 {
-                    if (string.IsNullOrEmpty(name))
+                    if (string.IsNullOrEmpty(name) || string.IsNullOrWhiteSpace(name))
                     {
                         MessageBox.Show("Adj meg egy nevet!", "Fogadó", MessageBoxButton.OK);
                     }
@@ -82,7 +83,7 @@ namespace Verseny
             {
                 _addevent = new RelayCommand<string>((name) =>
                 {
-                    if (string.IsNullOrEmpty(name))
+                    if (string.IsNullOrEmpty(name) || string.IsNullOrWhiteSpace(name))
                     {
                         MessageBox.Show("Adj meg egy eseményt!", "Fogadó", MessageBoxButton.OK);
                     }
@@ -96,6 +97,19 @@ namespace Verseny
                     }
                 });
                 return _addevent;
+            }
+        }
+
+        private RelayCommand<string> _addnewbetforgame;
+        public ICommand AddNewBetForGame
+        {
+            get
+            {
+                _addnewbetforgame = new RelayCommand<string>((bet) =>
+                {
+
+                });
+                return _addnewbetforgame;
             }
         }
         public ViewModel()
