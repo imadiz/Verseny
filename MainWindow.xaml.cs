@@ -23,6 +23,7 @@ namespace Verseny
         public MainWindow()
         {
             InitializeComponent();
+            //Teszt sync
         }
     }
 }
