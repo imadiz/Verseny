@@ -9,7 +9,4 @@
     <Window.DataContext>
         <local:ViewModel/>
     </Window.DataContext>
-    <Grid>
-        
-    </Grid>
 </Window>
