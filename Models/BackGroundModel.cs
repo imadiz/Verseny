@@ -8,6 +8,9 @@ namespace Verseny.Models
 {
     public class BackGroundModel
     {
+        public void ReadGames(string filename)
+        {
 
+        }
     }
 }
