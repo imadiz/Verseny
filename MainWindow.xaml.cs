@@ -23,7 +23,22 @@ namespace Verseny
         public MainWindow()
         {
             InitializeComponent();
-            //Teszt sync
+        }
+
+        private void TabControl_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            TabControl MainControl = sender as TabControl;
+            switch ((MainControl.SelectedItem as TabItem).Name)
+            {
+                case "Create_Game":
+                    this.Width = 400;
+                    this.Height = 450;
+                    break;
+                case "Create_Bet":
+                    this.Width = 600;
+                    this.Height = 450;
+                    break;
+            }
         }
     }
 }

@@ -5,8 +5,135 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Verseny"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="Fogadások kezelője" Height="450" Width="600"
+        ResizeMode="CanMinimize">
     <Window.DataContext>
         <local:ViewModel/>
     </Window.DataContext>
+    <TabControl SelectionChanged="TabControl_SelectionChanged">
+        <TabItem x:Name="Create_Game" Header="Játék létrehozása">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Label Grid.Column="0"
+                       Grid.Row="0"
+                       HorizontalAlignment="Center"
+                       VerticalAlignment="Center"
+                       Content="Szervező"/>
+                <TextBox x:Name="txt_OrganizerName"
+                         Grid.Column="1"
+                         Grid.Row="0"
+                         HorizontalAlignment="Stretch"
+                         VerticalAlignment="Center"
+                         Text="{Binding Model.Pending.Organizer, Mode=OneWayToSource}"/>
+                <Label Grid.Column="0"
+                       Grid.Row="1"
+                       HorizontalAlignment="Center"
+                       VerticalAlignment="Center"
+                       Content="Játék neve"/>
+                <TextBox x:Name="txt_GameName"
+                         Grid.Column="1"
+                         Grid.Row="1"
+                         HorizontalAlignment="Stretch"
+                         VerticalAlignment="Center"
+                         Text="{Binding Model.Pending.Name, Mode=OneWayToSource}"/>
+                <Label Grid.Column="0"
+                       Grid.Row="2"
+                       HorizontalAlignment="Center"
+                       VerticalAlignment="Center"
+                       Content="Alanyok"/>
+                <Grid Grid.Row="2"
+                      Grid.Column="1">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="20*"/>
+                        <RowDefinition Height="80*"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="75*"/>
+                        <ColumnDefinition Width="35*"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBox x:Name="txt_NameToAdd"
+                             VerticalAlignment="Stretch"
+                             Grid.Row="0"
+                             Grid.Column="0"/>
+                    <Button x:Name="btn_AddName"
+                            HorizontalAlignment="Right"
+                            Content="Hozzáadás"
+                            VerticalAlignment="Stretch"
+                            Grid.Column="1"
+                            Grid.Row="0"
+                            Command="{Binding AddParticipant}"
+                            CommandParameter="{Binding ElementName=txt_NameToAdd, Path=Text}"/>
+                    <ListView Name="lv_participantlist"
+                              HorizontalAlignment="Stretch"
+                              VerticalAlignment="Stretch"
+                              Grid.Row="2"
+                              Grid.Column="0"
+                              Grid.ColumnSpan="2"
+                              ItemsSource="{Binding Model.Pending.NameOfSubjects}"/>
+                </Grid>
+                <StackPanel Orientation="Vertical"
+                            Grid.Row="3"
+                            Grid.Column="0"
+                            VerticalAlignment="Center">
+                    <Label Content="Események"
+                           HorizontalAlignment="Center"
+                           VerticalAlignment="Center"/>
+                    <Button x:Name="btn_addBet"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            Content="Játék hozzáadása"
+                            Margin="0 15 0 0"
+                            Command="{Binding AddBet}"/>
+                </StackPanel>
+                <Grid Grid.Row="3"
+                      Grid.Column="1">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="20*"/>
+                        <RowDefinition Height="80*"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="75*"/>
+                        <ColumnDefinition Width="35*"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBox x:Name="txt_EventToAdd"
+                             VerticalAlignment="Stretch"
+                             Grid.Row="0"
+                             Grid.Column="0"/>
+                    <Button x:Name="btn_AddEvent"
+                            HorizontalAlignment="Right"
+                            Content="Hozzáadás"
+                            VerticalAlignment="Stretch"
+                            Grid.Column="1"
+                            Grid.Row="0"
+                            Command="{Binding AddEvent}"
+                            CommandParameter="{Binding ElementName=txt_EventToAdd, Path=Text}"/>
+                    <ListView Name="lv_eventlist"
+                              HorizontalAlignment="Stretch"
+                              VerticalAlignment="Stretch"
+                              Grid.Row="2"
+                              Grid.Column="0"
+                              Grid.ColumnSpan="2"
+                              ItemsSource="{Binding Model.Pending.Events}"/>
+                </Grid>
+            </Grid>
+        </TabItem>
+        <TabItem x:Name="Create_Bet" Header="Fogadás leadása">
+            
+        </TabItem>
+        <TabItem x:Name="Close_Game" Header="Játék lezárása">
+            
+        </TabItem>
+        <TabItem x:Name="Queries" Header="Lekérdezések">
+            
+        </TabItem>
+    </TabControl>
 </Window>

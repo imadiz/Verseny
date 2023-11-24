@@ -82,7 +82,7 @@ namespace Verseny.Models
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
         }
-        public OneGame(string organizer, string gamename, int numberofsubjects, int numberofevents)
+        public OneGame(string organizer = null, string gamename = null, int numberofsubjects = 0, int numberofevents = 0)
         {
             Organizer = organizer;
             Name = gamename;
