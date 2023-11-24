@@ -12,7 +12,7 @@ namespace Verseny.Models
         ObservableCollection<OneGame> AllGames { get; set; } = new ObservableCollection<OneGame>();
         public void ReadGames(string filename)
         {
-
+            
         }
     }
 }
