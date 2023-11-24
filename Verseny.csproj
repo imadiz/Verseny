@@ -99,8 +99,8 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="bin\Debug\eredmenyek.txt" />
-    <Resource Include="bin\Debug\fogadasok.txt" />
     <Resource Include="bin\Debug\jatekok.txt" />
+    <Resource Include="bin\Debug\fogadasok.txt" />
     <Content Include="bin\Debug\Verseny.exe" />
     <Content Include="bin\Debug\Verseny.pdb" />
   </ItemGroup>
